@@ -4,9 +4,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ke5y5"]
 shader = ExtResource("1_qxjen")
-shader_parameter/offset = 5.0
+shader_parameter/offset = 50.0
 
 [node name="ChromaticAberration" type="CanvasLayer"]
+layer = 102
 
 [node name="data" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ke5y5")
