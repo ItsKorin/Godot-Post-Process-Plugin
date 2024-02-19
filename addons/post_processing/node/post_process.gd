@@ -114,86 +114,86 @@ func _update_shaders():
 		for child in get_children():
 			if child.name.begins_with("ChromaticAberration"):
 					child.visible = false
-		if Blur == true:
-			for child in get_children():
-				if child.name.begins_with("Blur"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("Blur"):
-					child.visible = false
-		if FishEye == true:
-			for child in get_children():
-				if child.name.begins_with("FishEye"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("FishEye"):
-					child.visible = false
-		if Vignette == true:
-			for child in get_children():
-				if child.name.begins_with("Vignette"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("Vignette"):
-					child.visible = false
-		if Glitch == true:
-			for child in get_children():
-				if child.name.begins_with("Glitch"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("Glitch"):
-					child.visible = false
-		if Outline == true:
-			for child in get_children():
-				if child.name.begins_with("Outline"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("Outline"):
-					child.visible = false
-		if ScreenShake == true:
-			for child in get_children():
-				if child.name.begins_with("ScreenShake"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("ScreenShake"):
-					child.visible = false
-		if AnalogMonitor == true:
-			for child in get_children():
-				if child.name.begins_with("AnalogMonitor"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("AnalogMonitor"):
-					child.visible = false
-		if Grain == true:
-			for child in get_children():
-				if child.name.begins_with("Grain"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("Grain"):
-					child.visible = false
-		if CircularWaves == true:
-			for child in get_children():
-				if child.name.begins_with("CircularWaves"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("CircularWaves"):
-					child.visible = false
-		if SpeedLines == true:
-			for child in get_children():
-				if child.name.begins_with("SpeedLines"):
-					child.visible = true
-		else:
-			for child in get_children():
-				if child.name.begins_with("SpeedLines"):
-					child.visible = false
+	if Blur == true:
+		for child in get_children():
+			if child.name.begins_with("Blur"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("Blur"):
+				child.visible = false
+	if FishEye == true:
+		for child in get_children():
+			if child.name.begins_with("FishEye"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("FishEye"):
+				child.visible = false
+	if Vignette == true:
+		for child in get_children():
+			if child.name.begins_with("Vignette"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("Vignette"):
+				child.visible = false
+	if Glitch == true:
+		for child in get_children():
+			if child.name.begins_with("Glitch"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("Glitch"):
+				child.visible = false
+	if Outline == true:
+		for child in get_children():
+			if child.name.begins_with("Outline"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("Outline"):
+				child.visible = false
+	if ScreenShake == true:
+		for child in get_children():
+			if child.name.begins_with("ScreenShake"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("ScreenShake"):
+				child.visible = false
+	if AnalogMonitor == true:
+		for child in get_children():
+			if child.name.begins_with("AnalogMonitor"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("AnalogMonitor"):
+				child.visible = false
+	if Grain == true:
+		for child in get_children():
+			if child.name.begins_with("Grain"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("Grain"):
+				child.visible = false
+	if CircularWaves == true:
+		for child in get_children():
+			if child.name.begins_with("CircularWaves"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("CircularWaves"):
+				child.visible = false
+	if SpeedLines == true:
+		for child in get_children():
+			if child.name.begins_with("SpeedLines"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("SpeedLines"):
+				child.visible = false
 
 
 
