@@ -4,7 +4,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ke5y5"]
 shader = ExtResource("1_qxjen")
-shader_parameter/offset = 1.0
+shader_parameter/offset = 5.23
 
 [node name="ChromaticAberration" type="CanvasLayer"]
 layer = 102
@@ -16,3 +16,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2

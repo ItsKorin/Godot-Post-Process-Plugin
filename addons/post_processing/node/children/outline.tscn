@@ -9,6 +9,7 @@ shader_parameter/threshold = 0.0
 shader_parameter/blend = 0.1
 
 [node name="Outline" type="CanvasLayer"]
+visible = false
 
 [node name="data" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_yuki3")
@@ -17,3 +18,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://k8tnsut5pohj"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/ascii.gdshader" id="1_bp3vh"]
+[ext_resource type="Texture2D" uid="uid://5rj5tlylm7bt" path="res://addons/post_processing/assets/ascii.png" id="2_qs7p5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppj3i"]
+shader = ExtResource("1_bp3vh")
+shader_parameter/ascii_size = Vector2(5, 10)
+shader_parameter/available_columns = 10
+shader_parameter/max_columns = 16
+shader_parameter/ascii_tex = ExtResource("2_qs7p5")
+
+[node name="Ascii" type="CanvasLayer"]
+layer = 99
+visible = false
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ppj3i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvpfe511myfg5"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/bloom.gdshader" id="1_qyxdw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qv2yl"]
+shader = ExtResource("1_qyxdw")
+shader_parameter/BlurAmount = null
+shader_parameter/FlareThreshold = null
+shader_parameter/Flares = null
+shader_parameter/FlareSpacing = null
+shader_parameter/Intensity = null
+shader_parameter/Saturation_ = null
+shader_parameter/FalloffStart = null
+shader_parameter/FalloffEnd = null
+
+[node name="Bloom" type="CanvasLayer"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="ColorRect" parent="."]
+z_index = 105
+material = SubResource("ShaderMaterial_qv2yl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

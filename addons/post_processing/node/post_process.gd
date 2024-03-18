@@ -2,6 +2,10 @@
 extends CanvasLayer
 
 @export_category("Post Process")
+@export var reload: bool
+@export_category("ASCII (No Color)")
+@export var ASCII: bool
+@export var ASCIISize: Vector2 = Vector2(4,9)
 @export_category("Chromatic Aberration")
 @export var ChromaticAberration: bool
 @export var StrenghtCA: float = 1
@@ -10,7 +14,12 @@ extends CanvasLayer
 @export_range(0.0, 5) var L_O_D = 1.0
 @export_category("Fish Eye")
 @export var FishEye: bool
-@export_range(-2.5, 2.5) var FishEyeAmount: float
+@export var FishEyeAspect = 1.0
+@export var FishEyeDistortion = 1.0
+@export var FishEyeRadius = 1.0
+@export var FishEyeAlpha = 1.0
+@export var FishEyeCrop = 1.0
+@export var FishEyeCropColor = Color.BLACK
 @export_category("Vignette")
 @export var Vignette: bool
 @export var VignetteIntensity = 0.4
@@ -66,7 +75,12 @@ func _update_shaders():
 			data.material.set_shader_parameter("lod", L_O_D)
 		elif child.name == "FishEye":
 			var data = child.get_child(0)
-			data.material.set_shader_parameter("effect_amount", FishEyeAmount)
+			data.material.set_shader_parameter("aspect", FishEyeAspect)
+			data.material.set_shader_parameter("distortion", FishEyeDistortion)
+			data.material.set_shader_parameter("radius", FishEyeRadius)
+			data.material.set_shader_parameter("alpha", FishEyeAlpha)
+			data.material.set_shader_parameter("crop", FishEyeCrop)
+			data.material.set_shader_parameter("crop_color", FishEyeCropColor)
 		elif child.name == "Vignette":
 			var data = child.get_child(0)
 			data.material.set_shader_parameter("vignette_intensity", VignetteIntensity)
@@ -104,7 +118,9 @@ func _update_shaders():
 			data.material.set_shader_parameter("line_count", SpeedLinesCount)
 			data.material.set_shader_parameter("line_density", SpeedLineDensity)
 			data.material.set_shader_parameter("animation_speed", SpeedLineSpeed)
-
+		elif child.name == "Ascii":
+			var data = child.get_child(0)
+			data.material.set_shader_parameter("ascii_size", ASCIISize)
 
 	if ChromaticAberration == true:
 		for child in get_children():
@@ -194,7 +210,14 @@ func _update_shaders():
 		for child in get_children():
 			if child.name.begins_with("SpeedLines"):
 				child.visible = false
-
+	if ASCII == true:
+		for child in get_children():
+			if child.name.begins_with("Ascii"):
+				child.visible = true
+	else:
+		for child in get_children():
+			if child.name.begins_with("Ascii"):
+				child.visible = false
 
 
 
@@ -233,6 +256,9 @@ func _enter_tree():
 	var spd_lin = load("res://addons/post_processing/node/children/speed_lines.tscn")
 	add_child(spd_lin.instantiate())
 	print("created SDP_LIN")
+	var ascii = load("res://addons/post_processing/node/children/ascii.tscn")
+	add_child(ascii.instantiate())
+	print("created ASCII")
 	
 	
 	_update_shaders()
@@ -243,3 +269,6 @@ func _enter_tree():
 func _process(delta):
 	if Engine.is_editor_hint() or !Engine.is_editor_hint():
 		_update_shaders()
+	if reload == true:
+		_update_shaders()
+		reload = false

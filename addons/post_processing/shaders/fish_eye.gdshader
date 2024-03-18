@@ -1,49 +1,49 @@
+/////////////////////////////////
+// 2D Radial Distortion Shader //
+/////////////////////////////////
+
+// Screen space shader for Godot, based on: https://gist.github.com/aggregate1166877/a889083801d67917c26c12a98e7f57a7
+
 shader_type canvas_item;
+
+uniform float aspect = 1.0;
+uniform float distortion = 1.0;
+uniform float radius = 1.0;
+uniform float alpha = 1.0;
+uniform float crop = 1.0;
+uniform vec4 crop_color : source_color = vec4(0,0,0,1);
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
+vec2 distort(vec2 p)
+{
+	float d = length(p);
+	float z = sqrt(distortion + d * d * -distortion);
+	float r = atan(d, z) / 3.1415926535;
+	float phi = atan(p.y, p.x);
+	return vec2(r * cos(phi) * (1.0 / aspect) + 0.5, r * sin(phi) + 0.5);
+}
 
-uniform float effect_amount : hint_range(-2.5, 2.2) = 1.0;
+void fragment()
+{
+	vec2 xy = (SCREEN_UV * 2.0 - 1.0); // move origin of UV coordinates to center of screen
 
-void fragment(){
-	vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
-	vec4 fragCoord = FRAGCOORD;
-	
-	vec2 p = fragCoord.xy / iResolution.x;
-	
-	float prop = iResolution.x / iResolution.y;
-	
-	vec2 m = vec2(0.5, 0.5 / prop);
-	
-	vec2 d = p - m;
-	
-	float r = sqrt(dot(d, d));
-	
-	float power = effect_amount;
-	
-	float bind;
-	
-	if (power > 0.0)
-		bind = sqrt(dot(m, m));
-	else{
-		if (prop < 1.0)
-			bind = m.x;
-		else
-			bind = m.y;
+	xy = vec2(xy.x * aspect, xy.y); // adjust aspect ratio
+
+	float d = length(xy); // distance from center
+
+	vec4 tex;
+
+	if (d < radius)
+	{
+		xy = distort(xy);
+		tex = texture(SCREEN_TEXTURE, xy);
+		COLOR = tex;
+		COLOR.a = alpha;
 	}
-	
-	vec2 uv;
-	
-	//fisheye
-	if (power > 0.0)
-		uv = m + normalize(d) * tan(r * power) * bind / tan(bind * power);
-	else if (power < 0.0)
-		uv = m + normalize(d) * atan(r * -power, 10.0) * bind / atan(-power * bind * 10.0);
-	//no effect for power =  1.0
-	else
-		uv = p;
-	uv.y *= prop;
-	
-	vec3 col = texture(SCREEN_TEXTURE, uv).rgb;
-	
-	COLOR = vec4(col, 1.0);
+
+	// radial crop
+	if (d > crop)
+	{
+		COLOR = crop_color;
+	}
 }
