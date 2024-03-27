@@ -1,16 +1,17 @@
 @tool
 extends CanvasLayer
 
-@export var configuration : PostProcessingConfiguration
+@export var configuration : PostProcessingPreset
 
-func _update_shaders():
+func _update_shaders() -> void:
 	if not configuration:
 		return
 	for child in get_children():
-		var data = child.get_child(0)
+		var data : ColorRect = child.get_child(0)
 		if data:
 			_update_shader_parameters(data.name, data.material)
-		child.visibility = _check_shader_visibility(child.name)
+		child.visible = _check_shader_visibility(child.name)
+	return
 
 func _update_shader_parameters( _name : String, _material : Material) -> void:
 	match _name:
@@ -113,8 +114,7 @@ func _enter_tree():
 	_add_canvas_layer_children("res://addons/post_processing/node/children/speed_lines.tscn", "SDP_LIN")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/ascii.tscn", "ASCII")
 	
-	if Engine.is_editor_hint():
-		_update_shaders() 
+	_update_shaders() 
 
 func _add_canvas_layer_children(_path : String, _name: String) -> void:
 	add_child(load(_path).instantiate())
