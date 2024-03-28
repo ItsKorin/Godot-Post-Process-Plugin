@@ -14,7 +14,7 @@ After moving from Unity to Godot in late 2019, I've felt like there was a lack o
 - Chromatic Aberration
 - Blur
 - Vignette
-- Glitch (Animate)
+- Glitch (Animated)
 - Outline (Not the best implementation, still being worked on).
 - Screen Shake
 - Analog Monitor
@@ -23,8 +23,9 @@ After moving from Unity to Godot in late 2019, I've felt like there was a lack o
 - Fish eye effect.
 
 ## Planned Features:
-- More Effects like: `Color Grading`, `Dithering`, etc.
-- Smooth transitions between previous and future effect states (ex: 0 blur slowly rising to 100)
+- [x] Effect Presets
+- [ ] More Effects like: `Color Grading`, `Dithering`, `Motion Blur`, `VHS`, etc.
+- [ ] Smooth transitions between previous and future effect states (ex: 0 blur slowly rising to 100)
 
 
 ## Basic Use:
@@ -73,6 +74,9 @@ func _process(_delta):
 
 This also works with other effects like:
 `ASCII`, `Blur`, `ChromaticAberration`, `FishEye`, etc...
+### Contributors:
+- **[Korin](https://github.com/ItsKorin)** _`Owner`_:crown:
+- **[Loufe](https://github.com/Loufe)** _`Contributor`_:pen:
 
 ### Some Screenshots:
 Normal:
