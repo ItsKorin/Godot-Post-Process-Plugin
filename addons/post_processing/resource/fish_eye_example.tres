@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="PostProcessingConfiguration" load_steps=2 format=3 uid="uid://dg8amcb0jcyas"]
+
+[ext_resource type="Script" path="res://addons/post_processing/resource/post_processing_configuration.gd" id="1_3y12k"]
+
+[resource]
+script = ExtResource("1_3y12k")
+reload = false
+ASCII = false
+ASCIISize = Vector2(4, 9)
+ChromaticAberration = false
+StrenghtCA = 1.0
+Blur = false
+L_O_D = 1.0
+FishEye = true
+FishEyeAspect = 1.0
+FishEyeDistortion = 0.5
+FishEyeRadius = 1.0
+FishEyeAlpha = 1.0
+FishEyeCrop = 1.0
+FishEyeCropColor = Color(0, 0, 0, 1)
+Vignette = false
+VignetteIntensity = 0.4
+VignetteOpacity = 0.5
+VignetteR_G_B = Color(0, 0, 0, 1)
+Glitch = false
+GlitchRange = 0.05
+GlitchNoiseQuality = 250.0
+GlitchIntenity = 0.0088
+GlitchOffset = 0.03
+GlitchColorOffset = 1.3
+Outline = false
+OutlineColor = Color(0, 0, 0, 1)
+OutlineThreshold = 0.0
+OutlineBlend = 0.01
+ScreenShake = false
+ScreenShakePower = 0.1
+AnalogMonitor = false
+AnalogMonitorResolution = Vector2(256, 256)
+Grain = false
+GrainPower = 75
+CircularWaves = false
+CircularWavesAmplitude = 2.0
+CircularWavesFrequency = 12.69
+CircularWavesRippleRate = 9.2
+SpeedLines = false
+SpeedLinesColor = Color(1, 1, 1, 1)
+SpeedLinesCount = 2
+SpeedLineDensity = 0.072
+SpeedLineSpeed = 20

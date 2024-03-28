@@ -1,13 +1,15 @@
 # Post Processing Plugin
-#### For Godot 4.2
-Since i moved from Unity in late 2019 i felt like Godot was lacking something, so last month i decided to make this simple plugin.
-It uses some simple Screen Space shaders to apply the effects.
-(Effects are applied on layers: 99-120, so i suggest putting UI above 120 and anything else like player, world etc. under 99!)
+#### An add-on for Godot 4.2, available in the Godot Asset Library.
+After moving from Unity to Godot in late 2019, I've felt like there was a lack of post-processing tooling. In February 2024 I decided to make and publish this simple add-on.
 
-### Features:
-- Custom PostProcess node.
+## Features:
+- Custom CanvasLayer node, "PostProcess".
 - 2D/3D support.
-- Ability to modify effects thru code.
+- Custom resource type to save preset configurations, "PostProcessPreset".
+- Ability to dynamically modify effects through code.
+- Effects:
+
+## Effects:
 - ASCII (Monochromatic / Render everything as ASCII text) (for now uses only: `.:-+*=%@#`).
 - Chromatic Aberration
 - Blur
@@ -18,12 +20,38 @@ It uses some simple Screen Space shaders to apply the effects.
 - Analog Monitor
 - Grain (Animated)
 - Circular Waves / Speed Lines (Low Quality, still being worked on).
+- Fish eye effect.
 
-### Planned Features:
-- More Effects like: `FishEye`, `Color Grading`, `Dithering`, etc.
+## Planned Features:
+- More Effects like: `Color Grading`, `Dithering`, etc.
+- Smooth transitions between previous and future effect states (ex: 0 blur slowly rising to 100)
 
-### Changing Effects Thru Code.
-In this example i will enable/disable ScreenShake!
+
+## Basic Use:
+Simply add the custom PostProcess node to the scene tree directly or through code. Set the "Configuration" property of the PostProcess to a PostProcessPreset (either pre-made or instantiated on-the-spot) and run the game. The add-on uses some simple "Screen Space" shaders to apply the desired effects.
+
+![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/7144aa73-a095-4a72-8c19-27c0c2b5e4b8)
+![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/3c6c2192-615e-4834-9417-6f1e6b337d04)
+![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/beb9e334-3852-4221-b78b-d5bd67893e0e)
+
+### Loading a preset:
+![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/6db89cad-3718-4e60-9e3b-1952a43ed8ac)
+
+### Creating an in-place preset:
+![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/c480db22-6192-4afd-9ec2-bdb5de3e8ab4)
+
+
+### Adding changes only through code:
+
+
+All values can be modified during runtime and the changes will be applied immediately. This applies to on/off states as well as numbered parameters. All effects can be applied in parallel and work together well.
+
+(NOTE: Effects are applied on rendering layers: 99-120, so i suggest putting UI above 120 and anything else like player, world etc. under 99!)
+
+
+
+## Changing Effects Through Code.
+In this example, we enable/disable ScreenShake!
 ```gdscript
 extends Node3D
 
@@ -47,7 +75,6 @@ This also works with other effects like:
 `ASCII`, `Blur`, `ChromaticAberration`, `FishEye`, etc...
 
 ### Some Screenshots:
-(Sorry for mouse in screenshots.)
 Normal:
 ![Godot_v4 2 1-stable_win64_4nCuRDZEv7](https://github.com/ItsKorin/Godot-Post-Process-Plugin/assets/92170697/b2d2a33a-aa9d-4217-92d2-4b6827eb9298)
 ASCII:
