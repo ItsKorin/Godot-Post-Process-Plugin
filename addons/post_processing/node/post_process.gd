@@ -1,7 +1,7 @@
 @tool
 extends CanvasLayer
 
-@export var configuration : PostProcessingPreset
+@export var configuration : PostProcessingConfiguration
 
 func _update_shaders() -> void:
 	if not configuration:
