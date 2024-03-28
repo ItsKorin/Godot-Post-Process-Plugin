@@ -30,9 +30,9 @@ After moving from Unity to Godot in late 2019, I've felt like there was a lack o
 ## Basic Use:
 Simply add the custom PostProcess node to the scene tree directly or through code. Set the "Configuration" property of the PostProcess to a PostProcessPreset (either pre-made or instantiated on-the-spot) and run the game. The add-on uses some simple "Screen Space" shaders to apply the desired effects.
 
-![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/7144aa73-a095-4a72-8c19-27c0c2b5e4b8)
-![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/3c6c2192-615e-4834-9417-6f1e6b337d04)
-![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/beb9e334-3852-4221-b78b-d5bd67893e0e)
+![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/7144aa73-a095-4a72-8c19-27c0c2b5e4b8) <br>
+![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/3c6c2192-615e-4834-9417-6f1e6b337d04) <br>
+![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/beb9e334-3852-4221-b78b-d5bd67893e0e) <br>
 
 ### Loading a preset:
 ![image](https://github.com/Loufe/Godot-Post-Process-Plugin/assets/5817861/6db89cad-3718-4e60-9e3b-1952a43ed8ac)
