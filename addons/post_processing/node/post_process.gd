@@ -1,6 +1,7 @@
 @tool
 extends CanvasLayer
 
+@export_category("Post Process")
 @export var configuration : PostProcessingConfiguration
 
 func _update_shaders() -> void:
