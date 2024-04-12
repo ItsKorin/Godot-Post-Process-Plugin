@@ -10,7 +10,7 @@ func _update_shaders() -> void:
 	for child in get_children():
 		var data : ColorRect = child.get_child(0)
 		if data:
-			_update_shader_parameters(data.name, data.material)
+			_update_shader_parameters(child.name, data.material)
 		child.visible = _check_shader_visibility(child.name)
 	return
 
