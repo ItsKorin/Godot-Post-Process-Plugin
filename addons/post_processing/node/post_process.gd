@@ -96,6 +96,10 @@ func _check_shader_visibility(_name: String) -> bool:
 
 		if _name.begins_with("Ascii"):
 			return true if configuration.ASCII else false
+
+		if _name.begins_with("CRT"):
+			return true if configuration.CRT else false
+		
 		
 		push_error("#Undefined type Post Processing addon - verify it has been properly integrated.")
 		return false # bad!
