@@ -143,8 +143,12 @@ func _enter_tree():
 	_update_shaders() 
 
 func _add_canvas_layer_children(_path : String, _name: String) -> void:
-	add_child(load(_path).instantiate())
-	print_debug("Successfully added child canvas-layer: " + _name + " to PostProcess adddon node.")
+	func _add_canvas_layer_children(_path : String, _name: String) -> void:
+	var child_instance = load(_path).instantiate()
+	add_child(child_instance)
+	var material_instance = child_instance.get_children()[0].material.duplicate()
+	child_instance.get_children()[0].material = material_instance
+	print_debug("Successfully added child canvas-layer: " + _name + " to PostProcess addon node.")
 
 func _process(delta):
 	if not configuration:
