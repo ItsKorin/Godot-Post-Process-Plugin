@@ -143,7 +143,6 @@ func _enter_tree():
 	_update_shaders() 
 
 func _add_canvas_layer_children(_path : String, _name: String) -> void:
-	func _add_canvas_layer_children(_path : String, _name: String) -> void:
 	var child_instance = load(_path).instantiate()
 	add_child(child_instance)
 	var material_instance = child_instance.get_children()[0].material.duplicate()
