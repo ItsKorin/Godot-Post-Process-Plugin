@@ -58,6 +58,28 @@ class_name PostProcessingConfiguration extends Resource
 @export_range(0,2, 0.05) var SpeedLinesCount = 2
 @export_range(0.0, 1.0) var SpeedLineDensity = 0.072
 @export_range(1.0, 40.0, 1.0) var SpeedLineSpeed = 20;
+@export_group("CRT")
+@export var CRT: bool
+@export var overlay : bool = false;
+@export_range(0.0, 1.0) var scanlines_opacity : float = 0.4;
+@export_range(0.0, 0.5) var scanlines_width : float = 0.25;
+@export_range(0.0, 1.0) var grille_opacity : float = 0.3;
+@export var pixelate : bool = true;
+@export var roll_speed : float = 8.0;
+@export_range(0.0, 100.0) var roll_size : float = 15.0;
+@export_range(0.1, 5.0) var roll_variation : float = 1.8;
+@export_range(0.0, 0.2) var distort_intensity : float = 0.05;
+@export_range(0.0, 1.0) var noise_opacity : float = 0.4;
+@export var noise_speed : float = 5.0; 
+@export_range(0.0, 1.0) var static_noise_intensity : float = 0.06;
+@export_range(-1.0, 1.0) var aberration : float = 0.03;
+@export var brightness : float = 1.4;
+@export var discolor : bool = true;
+@export_range(0.0, 5.0) var warp_amount : float = 1.0;
+@export var clip_warp : bool = false;
+@export var vignette_intensity : float = 0.4;
+@export_range(0.0, 1.0) var vignette_opacity : float = 0.5;
+
 
 #@export_category("Bloom")
 var Bloom: bool = false

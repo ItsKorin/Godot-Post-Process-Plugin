@@ -10,7 +10,7 @@ func _update_shaders() -> void:
 	for child in get_children():
 		var data : ColorRect = child.get_child(0)
 		if data:
-			_update_shader_parameters(data.name, data.material)
+			_update_shader_parameters(child.name, data.material)
 		child.visible = _check_shader_visibility(child.name)
 	return
 
@@ -58,6 +58,26 @@ func _update_shader_parameters( _name : String, _material : Material) -> void:
 			_material.set_shader_parameter("animation_speed", configuration.SpeedLineSpeed)
 		"Ascii":
 			_material.set_shader_parameter("ascii_size", configuration.ASCIISize)
+		"CRT":
+			_material.set_shader_parameter("overlay", configuration.overlay)
+			_material.set_shader_parameter("scanlines_opacity", configuration.scanlines_opacity)
+			_material.set_shader_parameter("scanlines_width", configuration.scanlines_width)
+			_material.set_shader_parameter("grille_opacity", configuration.grille_opacity)
+			_material.set_shader_parameter("pixelate", configuration.pixelate)
+			_material.set_shader_parameter("roll_size", configuration.roll_size)
+			_material.set_shader_parameter("roll_variation", configuration.roll_variation)
+			_material.set_shader_parameter("distort_intensity", configuration.distort_intensity)
+			_material.set_shader_parameter("noise_opacity", configuration.noise_opacity)
+			_material.set_shader_parameter("noise_speed", configuration.noise_speed)
+			_material.set_shader_parameter("static_noise_intensity", configuration.static_noise_intensity)
+			_material.set_shader_parameter("aberration", configuration.aberration)
+			_material.set_shader_parameter("brightness", configuration.brightness)
+			_material.set_shader_parameter("discolor", configuration.discolor)
+			_material.set_shader_parameter("warp_amount", configuration.warp_amount)
+			_material.set_shader_parameter("clip_warp", configuration.clip_warp)
+			_material.set_shader_parameter("vignette_intensity", configuration.vignette_intensity)
+			_material.set_shader_parameter("vignette_opacity", configuration.vignette_opacity)
+			
 
 func _check_shader_visibility(_name: String) -> bool:
 	
@@ -96,6 +116,10 @@ func _check_shader_visibility(_name: String) -> bool:
 
 		if _name.begins_with("Ascii"):
 			return true if configuration.ASCII else false
+
+		if _name.begins_with("CRT"):
+			return true if configuration.CRT else false
+		
 		
 		push_error("#Undefined type Post Processing addon - verify it has been properly integrated.")
 		return false # bad!
@@ -114,6 +138,7 @@ func _enter_tree():
 	_add_canvas_layer_children("res://addons/post_processing/node/children/circular_waves.tscn", "CIR_WAV")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/speed_lines.tscn", "SDP_LIN")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/ascii.tscn", "ASCII")
+	_add_canvas_layer_children("res://addons/post_processing/node/children/CRT.tscn", "CRT")
 	
 	_update_shaders() 
 
