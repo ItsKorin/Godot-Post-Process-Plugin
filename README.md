@@ -77,6 +77,7 @@ This also works with other effects like:
 ### Contributors:
 - **[Korin](https://github.com/ItsKorin)** _`Owner`_:crown:
 - **[Loufe](https://github.com/Loufe)** _`Contributor`_:pen:
+- **[SAED2906](https://github.com/SAED2906)** _`Contributor`_:pen:
 
 ### Some Screenshots:
 Normal:
