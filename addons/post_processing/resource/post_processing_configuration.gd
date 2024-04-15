@@ -1,7 +1,6 @@
 class_name PostProcessingConfiguration extends Resource
 
 # post-processing-config based system by loufe
-
 @export_group("Post Processing")
 @export var reload: bool
 @export_group("ASCII (No Color)")
