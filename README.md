@@ -7,7 +7,6 @@ After moving from Unity to Godot in late 2019, I've felt like there was a lack o
 - 2D/3D support.
 - Custom resource type to save preset configurations, "PostProcessPreset".
 - Ability to dynamically modify effects through code.
-- Effects:
 
 ## Effects:
 - ASCII (Monochromatic / Render everything as ASCII text) (for now uses only: `.:-+*=%@#`).
@@ -21,11 +20,12 @@ After moving from Unity to Godot in late 2019, I've felt like there was a lack o
 - Grain (Animated)
 - Circular Waves / Speed Lines (Low Quality, still being worked on).
 - Fish eye effect.
+- CRT/VHS
 
 ## Planned Features:
 - [x] Effect Presets
-- [ ] More Effects like: `Color Grading`, `Dithering`, `Motion Blur`, `VHS`, etc.
-- [ ] Smooth transitions between previous and future effect states (ex: 0 blur slowly rising to 100)
+- [ ] More Effects like: `Color Grading`, `Dithering`, `Motion Blur`, etc.
+- [x] Smooth transitions between previous and future effect states (ex: 0 blur slowly rising to 100) see Section: Changing Effects Through Code.
 
 
 ## Basic Use:
@@ -57,19 +57,22 @@ In this example, we enable/disable ScreenShake!
 extends Node3D
 
 func _process(_delta):
-    # Change the Screen Shake Power by 0.1 each frame
-    $PostProcess.ScreenShakePower += 0.1
+    # Check if Screen Shake is enabled
+    if $PostProcess.configuration.ScreenShake:
+        # Change the Screen Shake Power by 0.1 each frame
+        $PostProcess.configuration.ScreenShakePower += 0.1
+    
+        # if Screen Shake Power is bigger than 2, change it back to 0!
+        if $PostProcess.configuration.ScreenShakePower >= 2:
+            $PostProcess.configuration.ScreenShakePower = 0
 
-    # if Screen Shake Power is bigger than 2, change it back to 0!
-    if $PostProcess.ScreenShakePower >= 2:
-        $PostProcess.ScreenShakePower = 0
-
-
-    # if key T is pressed, Enable Screen Shake
+    # if key T is pressed, Toggle Screen Shake
     if Input.is_key_pressed(KEY_T):
-        $PostProcess.ScreenShake = true
-    else:
-        $PostProcess.ScreenShake = false
+        if $PostProcess.configuration.ScreenShake:
+            $PostProcess.configuration.ScreenShake = false
+        else:
+            $PostProcess.configuration.ScreenShake = true
+
 ```
 
 This also works with other effects like:
