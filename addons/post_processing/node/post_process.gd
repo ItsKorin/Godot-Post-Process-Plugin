@@ -4,7 +4,7 @@ extends CanvasLayer
 @export_category("Post Process")
 @export var configuration : PostProcessingConfiguration
 
-func _update_shaders() -> void:
+func update_shaders() -> void:
 	if not configuration:
 		return
 	for child in get_children():
@@ -139,7 +139,7 @@ func _enter_tree():
 	_add_canvas_layer_children("res://addons/post_processing/node/children/ascii.tscn", "ASCII")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/CRT.tscn", "CRT")
 	
-	_update_shaders() 
+	update_shaders()
 
 func _add_canvas_layer_children(_path : String, _name: String) -> void:
 	var child_instance = load(_path).instantiate()
@@ -153,5 +153,5 @@ func _process(delta):
 		return
 	if Engine.is_editor_hint() or !Engine.is_editor_hint():
 		if configuration.reload == true:
-			_update_shaders()
+			update_shaders()
 			configuration.reload = false
