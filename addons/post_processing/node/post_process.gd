@@ -3,6 +3,7 @@ extends CanvasLayer
 
 @export_category("Post Process")
 @export var configuration : PostProcessingConfiguration
+@export var dynamically_update : bool = true
 
 func update_shaders() -> void:
 	if not configuration:
@@ -151,7 +152,10 @@ func _add_canvas_layer_children(_path : String, _name: String) -> void:
 func _process(delta):
 	if not configuration:
 		return
-	if Engine.is_editor_hint() or !Engine.is_editor_hint():
-		if configuration.reload == true:
-			update_shaders()
-			configuration.reload = false
+	if Engine.is_editor_hint():
+		return
+	if not dynamically_update:
+		return
+	if configuration.reload:
+		update_shaders()
+		configuration.reload = false
