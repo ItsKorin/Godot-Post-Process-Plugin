@@ -156,6 +156,8 @@ func _process(delta):
 		return
 	if not dynamically_update:
 		return
+	else:
+		update_shaders()
 	if configuration.reload:
 		update_shaders()
 		configuration.reload = false
