@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0d4h1un0350r"]
 
-[ext_resource type="Shader" path="res://addons/post_processing/node/children/outline.gdshader" id="1_x8jvf"]
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/outline.gdshader" id="1_x8jvf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yuki3"]
 shader = ExtResource("1_x8jvf")
