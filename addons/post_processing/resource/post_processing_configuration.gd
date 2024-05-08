@@ -1,27 +1,28 @@
 class_name PostProcessingConfiguration extends Resource
 
 # post-processing-config based system by loufe
-@export_group("Post Processing")
+@export_group("Settings")
 @export var reload: bool
-@export_group("ASCII (No Color)")
+@export_group("Visual Effects")
+@export_subgroup("ASCII (No Color)")
 @export var ASCII: bool
 @export var ASCIISize: Vector2 = Vector2(4,9):
 	set(value):
 		ASCIISize = value
 		reload = true
-@export_group("Chromatic Aberration")
+@export_subgroup("Chromatic Aberration")
 @export var ChromaticAberration: bool
 @export var StrenghtCA: float = 1:
 	set(value):
 		StrenghtCA = value
 		reload = true
-@export_group("Blur")
+@export_subgroup("Blur")
 @export var Blur: bool
 @export_range(0.0, 5) var L_O_D = 1.0:
 	set(value):
 		L_O_D = value
 		reload = true
-@export_group("Fish Eye")
+@export_subgroup("Fish Eye")
 @export var FishEye: bool
 @export var FishEyeAspect = 1.0:
 	set(value):
@@ -47,7 +48,7 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		FishEyeCropColor = value
 		reload = true
-@export_group("Vignette")
+@export_subgroup("Vignette")
 @export var Vignette: bool
 @export var VignetteIntensity = 0.4:
 	set(value):
@@ -61,7 +62,7 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		VignetteR_G_B = value
 		reload = true
-@export_group("Glitch")
+@export_subgroup("Glitch")
 @export var Glitch: bool
 @export_range(0.0, 0.1, 0.005) var GlitchRange = 0.05:
 	set(value):
@@ -83,7 +84,7 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		GlitchColorOffset = value
 		reload = true
-@export_group("Outline")
+@export_subgroup("Outline")
 @export var Outline: bool
 @export var OutlineColor: Color = Color(0.0, 0.0, 0.0, 1.0):
 	set(value):
@@ -97,25 +98,13 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		OutlineBlend = value
 		reload = true
-@export_group("Screen Shake")
-@export var ScreenShake: bool
-@export var ScreenShakePower = 0.1:
-	set(value):
-		ScreenShakePower = value
-		reload = true
-@export_group("Analog Monitor")
-@export var AnalogMonitor: bool
-@export var AnalogMonitorResolution = Vector2(256, 256):
-	set(value):
-		AnalogMonitorResolution = value
-		reload = true
-@export_group("Grain")
+@export_subgroup("Grain")
 @export var Grain: bool
 @export_range(0, 150, 0.1) var GrainPower = 75:
 	set(value):
 		GrainPower = value
 		reload = true
-@export_group("Circular Waves")
+@export_subgroup("Circular Waves")
 @export var CircularWaves: bool
 @export_range(0,2, 0.01) var CircularWavesAmplitude = 2.0:
 	set(value):
@@ -129,7 +118,7 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		CircularWavesRippleRate = value
 		reload = true
-@export_group("Speed Lines")
+@export_subgroup("Speed Lines")
 @export var SpeedLines: bool
 @export var SpeedLinesColor: Color = Color.WHITE:
 	set(value):
@@ -147,7 +136,17 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		SpeedLineSpeed = value
 		reload = true
-@export_group("CRT")
+
+@export_group("Display")
+@export_subgroup("Color Correction")
+@export var ColorCorrection: bool
+@export var ColorCorrectionTint : Color
+@export_range(-1.0, 1.0) var ColorCorrectionBrightness : float = 0
+@export_range(-1.0, 1.0) var ColorCorrectionSaturation : float = 0
+@export_subgroup("Pixelate")
+@export var Pixelate : bool
+@export_range(0, 64) var PixelatePixelSize = 8
+@export_subgroup("CRT")
 @export var CRT: bool
 @export var overlay : bool = false:
 	set(value):
@@ -225,10 +224,16 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		vignette_opacity = value
 		reload = true
-
-
-#@export_category("Bloom")
-var Bloom: bool = false
-var BloomDirection = Vector2(0,0)
-var BloomRadius = 0.0
-var BloomIntensity = 0.0
+@export_subgroup("Analog Monitor")
+@export var AnalogMonitor: bool
+@export var AnalogMonitorResolution = Vector2(256, 256):
+	set(value):
+		AnalogMonitorResolution = value
+		reload = true
+@export_group("Other")
+@export_subgroup("Screen Shake")
+@export var ScreenShake: bool
+@export var ScreenShakePower = 0.1:
+	set(value):
+		ScreenShakePower = value
+		reload = true

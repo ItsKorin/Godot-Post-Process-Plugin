@@ -17,6 +17,12 @@ func update_shaders() -> void:
 
 func _update_shader_parameters( _name : String, _material : Material) -> void:
 	match _name:
+		"Pixelate":
+			_material.set_shader_parameter("pixelSize", configuration.PixelatePixelSize)
+		"ColorCorrection":
+			_material.set_shader_parameter("tint", configuration.ColorCorrectionTint)
+			_material.set_shader_parameter("brightness", configuration.ColorCorrectionBrightness)
+			_material.set_shader_parameter("saturation", configuration.ColorCorrectionSaturation)
 		"ChromaticAberration":
 			_material.set_shader_parameter("offset", configuration.StrenghtCA)
 		"Blur":
@@ -81,7 +87,10 @@ func _update_shader_parameters( _name : String, _material : Material) -> void:
 			
 
 func _check_shader_visibility(_name: String) -> bool:
-	
+		if _name.begins_with("Pixelate"):
+			return true if configuration.Pixelate else false
+		if _name.begins_with("ColorCorrection"):
+			return true if configuration.ColorCorrection else false
 		if _name.begins_with("ChromaticAberration"):
 			return true if configuration.ChromaticAberration else false
 		
@@ -139,6 +148,8 @@ func _enter_tree():
 	_add_canvas_layer_children("res://addons/post_processing/node/children/speed_lines.tscn", "SDP_LIN")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/ascii.tscn", "ASCII")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/CRT.tscn", "CRT")
+	_add_canvas_layer_children("res://addons/post_processing/node/children/color_correction.tscn", "CC")
+	_add_canvas_layer_children("res://addons/post_processing/node/children/pixelate.tscn", "PXL")
 	
 	update_shaders()
 
@@ -153,11 +164,14 @@ func _process(delta):
 	if not configuration:
 		return
 	if Engine.is_editor_hint():
-		return
-	if not dynamically_update:
-		return
+		if dynamically_update:
+			update_shaders()
+		else:
+			if configuration.reload:
+				configuration.reload = false
+				update_shaders()
 	else:
 		update_shaders()
 	if configuration.reload:
-		update_shaders()
 		configuration.reload = false
+		update_shaders()
