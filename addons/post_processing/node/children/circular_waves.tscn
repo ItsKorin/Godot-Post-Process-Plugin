@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0770lwctcbti"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/circularwaves.gdshader" id="1_s8hqx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mq5id"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bheeo"]
+noise = SubResource("FastNoiseLite_mq5id")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6bcgb"]
+shader = ExtResource("1_s8hqx")
+shader_parameter/amplitude = 0.99
+shader_parameter/frequency = 15.0
+shader_parameter/rippleRate = 7.7
+shader_parameter/waveAmplitude = 0.1
+shader_parameter/waveFrequency = 4.39
+shader_parameter/blendingAmount = 0.6
+shader_parameter/noise = SubResource("NoiseTexture2D_bheeo")
+
+[node name="CircularWaves" type="CanvasLayer"]
+visible = false
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6bcgb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

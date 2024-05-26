@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2fkqs44w2304"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/grain.gdshader" id="1_wos36"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb4vw"]
+render_priority = 0
+shader = ExtResource("1_wos36")
+
+[node name="Grain" type="CanvasLayer"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_wb4vw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

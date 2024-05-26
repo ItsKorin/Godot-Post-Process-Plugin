@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5qv7q54m4xn6"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/fish_eye.gdshader" id="1_eks6e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v56sw"]
+shader = ExtResource("1_eks6e")
+shader_parameter/aspect = 1.0
+shader_parameter/distortion = 1.0
+shader_parameter/radius = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/crop = 1.0
+shader_parameter/crop_color = Color(0, 0, 0, 1)
+
+[node name="FishEye" type="CanvasLayer"]
+layer = 103
+visible = false
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_v56sw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

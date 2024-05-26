@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0d4h1un0350r"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/node/children/outline.gdshader" id="1_x8jvf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yuki3"]
+shader = ExtResource("1_x8jvf")
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+shader_parameter/threshold = 0.0
+shader_parameter/blend = 0.1
+
+[node name="Outline" type="CanvasLayer"]
+visible = false
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_yuki3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b31wqmjq3q7ad"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/palette_limiter.gdshader" id="1_e4qfa"]
+[ext_resource type="Texture2D" uid="uid://nf2dcuadvrh7" path="res://addons/post_processing/assets/interesting_palette.png" id="2_y1cuq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x8ge8"]
+shader = ExtResource("1_e4qfa")
+shader_parameter/palette = ExtResource("2_y1cuq")
+
+[node name="Palette" type="CanvasLayer"]
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_x8ge8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

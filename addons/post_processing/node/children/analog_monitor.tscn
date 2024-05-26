@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctdvjs742haos"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/analog_monitor.gdshader" id="1_yo3om"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s1g6v"]
+shader = ExtResource("1_yo3om")
+shader_parameter/res = Vector2(256, 256)
+shader_parameter/mask_type = 0
+shader_parameter/bloom_type = 1
+shader_parameter/hardScan = -8.0
+shader_parameter/hardPix = -2.0
+shader_parameter/hardBloomScan = -2.0
+shader_parameter/hardBloomPix = -1.5
+shader_parameter/bloomAmount = 2.12
+shader_parameter/warp = Vector2(64, 24)
+shader_parameter/maskDark = 0.5
+shader_parameter/maskLight = 1.5
+
+[node name="AnalogMonitor" type="CanvasLayer"]
+visible = false
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_s1g6v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

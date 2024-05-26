@@ -1,0 +1,1 @@
+Hey, you may notice that when exploring the /shaders/ directory there are some unused shaders, that means that they either are worked on or werent properly removed!

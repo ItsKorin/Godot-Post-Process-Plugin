@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7k7vdwyhgqpd"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/screen_shake.gdshader" id="1_62rht"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rxg5"]
+shader = ExtResource("1_62rht")
+shader_parameter/ShakeStrength = 0.1
+shader_parameter/FactorA = Vector2(100, 100)
+shader_parameter/FactorB = Vector2(1, 1)
+shader_parameter/magnitude = Vector2(0.01, 0.01)
+
+[node name="ScreenShake" type="CanvasLayer"]
+visible = false
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_4rxg5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwioerk4ps6rr"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/glitch.gdshader" id="1_3euvy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdr74"]
+shader = ExtResource("1_3euvy")
+shader_parameter/range = 0.05
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.0088
+shader_parameter/offsetIntensity = 0.03
+shader_parameter/colorOffsetIntensity = 1.3
+
+[node name="Glitch" type="CanvasLayer"]
+layer = 104
+visible = false
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gdr74")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
