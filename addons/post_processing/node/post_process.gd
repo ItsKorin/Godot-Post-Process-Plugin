@@ -137,8 +137,7 @@ func _check_shader_visibility(_name: String) -> bool:
 		push_error("#Undefined type Post Processing addon - verify it has been properly integrated.")
 		return false # bad!
 
-func _enter_tree():
-	
+func _ready():
 	_add_canvas_layer_children("res://addons/post_processing/node/children/ChromaticAberration.tscn", "CA")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/blur.tscn", "BL")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/fish_eye.tscn", "FEYE")
@@ -155,7 +154,10 @@ func _enter_tree():
 	_add_canvas_layer_children("res://addons/post_processing/node/children/color_correction.tscn", "CC")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/pixelate.tscn", "PXL")
 	_add_canvas_layer_children("res://addons/post_processing/node/children/palette.tscn", "PLT")
-	
+
+	update_shaders()
+
+func _enter_tree():
 	update_shaders()
 
 func _add_canvas_layer_children(_path : String, _name: String) -> void:
