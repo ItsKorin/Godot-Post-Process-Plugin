@@ -171,14 +171,6 @@ func _process(delta):
 	if not configuration:
 		return
 	if Engine.is_editor_hint():
-		if dynamically_update:
-			update_shaders()
-		else:
-			if configuration.reload:
-				configuration.reload = false
-				update_shaders()
-	else:
-		update_shaders()
-	if configuration.reload:
+	if configuration.reload and (dynamically_update or Engine.is_editor_hint()):
 		configuration.reload = false
 		update_shaders()
