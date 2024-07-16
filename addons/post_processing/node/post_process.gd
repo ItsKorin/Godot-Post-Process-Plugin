@@ -170,7 +170,6 @@ func _add_canvas_layer_children(_path : String, _name: String) -> void:
 func _process(delta):
 	if not configuration:
 		return
-	if Engine.is_editor_hint():
 	if configuration.reload and (dynamically_update or Engine.is_editor_hint()):
 		configuration.reload = false
 		update_shaders()
