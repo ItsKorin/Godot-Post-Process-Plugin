@@ -56,7 +56,7 @@ In this example, we enable/disable ScreenShake!
 ```gdscript
 extends Node3D
 
-func _process(_delta):
+func _process(_delta) -> void:
     # Check if Screen Shake is enabled
     if $PostProcess.configuration.ScreenShake:
         # Change the Screen Shake Power by 0.1 each frame
