@@ -1,5 +1,6 @@
 @tool
 extends CanvasLayer
+class_name PostProcess
 
 @export_category("Post Process")
 @export var configuration : PostProcessingConfiguration
