@@ -5,25 +5,37 @@ class_name PostProcessingConfiguration extends Resource
 @export var reload: bool
 @export_group("Visual Effects")
 @export_subgroup("ASCII (No Color)")
-@export var ASCII: bool
+@export var ASCII: bool:
+	set(value):
+		ASCII = value
+		reload = true
 @export var ASCIISize: Vector2 = Vector2(4,9):
 	set(value):
 		ASCIISize = value
 		reload = true
 @export_subgroup("Chromatic Aberration")
-@export var ChromaticAberration: bool
+@export var ChromaticAberration: bool:
+	set(value):
+		ChromaticAberration = value
+		reload = true
 @export var StrenghtCA: float = 1:
 	set(value):
 		StrenghtCA = value
 		reload = true
 @export_subgroup("Blur")
-@export var Blur: bool
+@export var Blur: bool:
+	set(value):
+		Blur = value
+		reload = true
 @export_range(0.0, 5) var L_O_D = 1.0:
 	set(value):
 		L_O_D = value
 		reload = true
 @export_subgroup("Fish Eye")
-@export var FishEye: bool
+@export var FishEye: bool:
+	set(value):
+		FishEye = value
+		reload = true
 @export var FishEyeAspect = 1.0:
 	set(value):
 		FishEyeAspect = value
@@ -49,7 +61,10 @@ class_name PostProcessingConfiguration extends Resource
 		FishEyeCropColor = value
 		reload = true
 @export_subgroup("Vignette")
-@export var Vignette: bool
+@export var Vignette: bool:
+	set(value):
+		Vignette = value
+		reload = true
 @export var VignetteIntensity = 0.4:
 	set(value):
 		VignetteIntensity = value
@@ -63,7 +78,10 @@ class_name PostProcessingConfiguration extends Resource
 		VignetteR_G_B = value
 		reload = true
 @export_subgroup("Glitch")
-@export var Glitch: bool
+@export var Glitch: bool:
+	set(value):
+		Glitch = value
+		reload = true
 @export_range(0.0, 0.1, 0.005) var GlitchRange = 0.05:
 	set(value):
 		GlitchRange = value
@@ -85,7 +103,10 @@ class_name PostProcessingConfiguration extends Resource
 		GlitchColorOffset = value
 		reload = true
 @export_subgroup("Outline")
-@export var Outline: bool
+@export var Outline: bool:
+	set(value):
+		Outline = value
+		reload = true
 @export var OutlineColor: Color = Color(0.0, 0.0, 0.0, 1.0):
 	set(value):
 		OutlineColor = value
@@ -99,13 +120,19 @@ class_name PostProcessingConfiguration extends Resource
 		OutlineBlend = value
 		reload = true
 @export_subgroup("Grain")
-@export var Grain: bool
+@export var Grain: bool:
+	set(value):
+		Grain = value
+		reload = true
 @export_range(0, 150, 0.1) var GrainPower = 75:
 	set(value):
 		GrainPower = value
 		reload = true
 @export_subgroup("Circular Waves")
-@export var CircularWaves: bool
+@export var CircularWaves: bool:
+	set(value):
+		CircularWaves = value
+		reload = true
 @export_range(0,2, 0.01) var CircularWavesAmplitude = 2.0:
 	set(value):
 		CircularWavesAmplitude = value
@@ -119,7 +146,10 @@ class_name PostProcessingConfiguration extends Resource
 		CircularWavesRippleRate = value
 		reload = true
 @export_subgroup("Speed Lines")
-@export var SpeedLines: bool
+@export var SpeedLines: bool:
+	set(value):
+		SpeedLines = value
+		reload = true
 @export var SpeedLinesColor: Color = Color.WHITE:
 	set(value):
 		SpeedLinesColor = value
@@ -139,18 +169,45 @@ class_name PostProcessingConfiguration extends Resource
 
 @export_group("Display")
 @export_subgroup("Color Correction")
-@export var ColorCorrection: bool
-@export var ColorCorrectionTint : Color
-@export_range(-1.0, 1.0) var ColorCorrectionBrightness : float = 0
-@export_range(-1.0, 1.0) var ColorCorrectionSaturation : float = 0
+@export var ColorCorrection: bool:
+	set(value):
+		ColorCorrection = value
+		reload = true
+@export var ColorCorrectionTint : Color:
+	set(value):
+		ColorCorrectionTint = value
+		reload = true
+@export_range(-1.0, 1.0) var ColorCorrectionBrightness : float = 0:
+	set(value):
+		ColorCorrectionBrightness = value
+		reload = true
+@export_range(-1.0, 1.0) var ColorCorrectionSaturation : float = 0:
+	set(value):
+		ColorCorrectionSaturation = value
+		reload = true
 @export_subgroup("Palette")
-@export var Palette : bool
-@export var PalettePalette : Texture2D
+@export var Palette : bool:
+	set(value):
+		Palette = value
+		reload = true
+@export var PalettePalette : Texture2D:
+	set(value):
+		PalettePalette = value
+		reload = true
 @export_subgroup("Pixelate")
-@export var Pixelate : bool
-@export_range(0, 64) var PixelatePixelSize = 8
+@export var Pixelate : bool:
+	set(value):
+		Pixelate = value
+		reload = true
+@export_range(0, 64) var PixelatePixelSize = 8:
+	set(value):
+		PixelatePixelSize = value
+		reload = true
 @export_subgroup("CRT")
-@export var CRT: bool
+@export var CRT: bool:
+	set(value):
+		CRT = value
+		reload = true
 @export var overlay : bool = false:
 	set(value):
 		overlay = value
@@ -228,14 +285,20 @@ class_name PostProcessingConfiguration extends Resource
 		vignette_opacity = value
 		reload = true
 @export_subgroup("Analog Monitor")
-@export var AnalogMonitor: bool
+@export var AnalogMonitor: bool:
+	set(value):
+		AnalogMonitor = value
+		reload = true
 @export var AnalogMonitorResolution = Vector2(256, 256):
 	set(value):
 		AnalogMonitorResolution = value
 		reload = true
 @export_group("Other")
 @export_subgroup("Screen Shake")
-@export var ScreenShake: bool
+@export var ScreenShake: bool:
+	set(value):
+		ScreenShake = value
+		reload = true
 @export var ScreenShakePower = 0.1:
 	set(value):
 		ScreenShakePower = value
