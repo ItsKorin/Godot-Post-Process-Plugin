@@ -15,6 +15,7 @@ enum EffectType {
 	GRAIN,
 	OUTLINE,
 	PALETTE,
+	PARTICLE_STORM,
 	PIXELATE,
 	SCREEN_SHAKE,
 	SPEED_LINES,
@@ -112,6 +113,14 @@ func _update_shader_parameters( _type : EffectType, _material : Material) -> voi
 			_material.set_shader_parameter("clip_warp", configuration.clip_warp)
 			_material.set_shader_parameter("vignette_intensity", configuration.vignette_intensity)
 			_material.set_shader_parameter("vignette_opacity", configuration.vignette_opacity)
+		EffectType.PARTICLE_STORM:  # Add new case
+			_material.set_shader_parameter("particle_color", configuration.particle_storm_color)
+			_material.set_shader_parameter("wind_direction", configuration.particle_storm_wind_direction)
+			_material.set_shader_parameter("wind_speed", configuration.particle_storm_wind_speed)
+			_material.set_shader_parameter("intensity", configuration.particle_storm_intensity)
+			_material.set_shader_parameter("chaos", configuration.particle_storm_chaos)
+			_material.set_shader_parameter("scale", configuration.particle_storm_scale)
+			_material.set_shader_parameter("density", configuration.particle_storm_density)
 		_:
 			push_error("Unhandled/Invalid EffectType: " + str(_type))
 
@@ -150,6 +159,8 @@ func _check_shader_visibility(_type: EffectType) -> bool:
 			return configuration.SpeedLines
 		EffectType.VIGNETTE:
 			return configuration.Vignette
+		EffectType.PARTICLE_STORM:
+			return configuration.particle_storm
 		_:
 			push_error("Unhandled/Invalid EffectType: " + str(_type))
 			return false
@@ -172,6 +183,7 @@ func _ready():
 	_add_canvas_layer_children("res://addons/post_processing/node/children/color_correction.tscn", EffectType.COLOR_CORRECTION)
 	_add_canvas_layer_children("res://addons/post_processing/node/children/pixelate.tscn", EffectType.PIXELATE)
 	_add_canvas_layer_children("res://addons/post_processing/node/children/palette.tscn", EffectType.PALETTE)
+	_add_canvas_layer_children("res://addons/post_processing/node/children/particle_storm.tscn", EffectType.PARTICLE_STORM)
 
 	var null_effects: PackedStringArray = []
 	for e in effects:
