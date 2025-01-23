@@ -33,7 +33,7 @@ vec2 get_particle_pos(vec2 cell_position, float particle_index, float current_ti
 
     // Calculate wind-driven movement
     vec2 wind_offset = wind_direction * current_time * velocity_variation;
-
+    
     // Calculate swirling motion parameters
     float swirl_phase = current_time * (0.5 + particle_characteristics.y * 0.5);
     float swirl_amplitude = 0.1 + particle_characteristics.x * 0.1;
@@ -88,14 +88,13 @@ void fragment() {
             }
         }
     }
-
     // Apply intensity and clamp to valid range
     total_sand_density *= intensity;
     total_sand_density = clamp(total_sand_density, 0.0, 1.0);
 
     // Quantize density for sharper particle appearance
     total_sand_density = floor(total_sand_density * 6.0) / 6.0;
-
+    
     // Output final color with transparency
     COLOR = vec4(particle_color.rgb, total_sand_density * particle_color.a);
 }
