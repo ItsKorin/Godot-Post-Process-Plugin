@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0d4h1un0350r"]
+
+[ext_resource type="Shader" path="res://addons/post_processing/shaders/particle_storm.gdshader" id="1_wnruh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_particle_storm"]
+shader = ExtResource("1_wnruh")
+shader_parameter/particle_color = Color(0.87, 0.78, 0.6, 1)
+shader_parameter/wind_direction = Vector2(1, 0.2)
+shader_parameter/wind_speed = 1.0
+shader_parameter/intensity = 0.5
+shader_parameter/chaos = 1.075
+shader_parameter/scale = 1.0
+shader_parameter/density = 1.0
+
+[node name="particle_storm" type="CanvasLayer"]
+visible = false
+
+[node name="data" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_particle_storm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

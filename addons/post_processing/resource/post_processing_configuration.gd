@@ -166,6 +166,41 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		SpeedLineSpeed = value
 		reload = true
+@export_subgroup("Particle Storm")
+@export var particle_storm: bool:
+	set(value):
+		particle_storm = value
+		reload = true
+@export var particle_storm_color: Color = Color(0.87, 0.78, 0.60, 1.0):
+	set(value):
+		particle_storm_color = value
+		reload = true
+@export_range(0.0, 10.0) var particle_storm_intensity = 0.5:
+	set(value):
+		particle_storm_intensity = value
+		reload = true
+@export_range(0.0, 10.0) var particle_storm_chaos = 1.0:
+	set(value):
+		particle_storm_chaos = value
+		reload = true
+@export_range(0.5, 10.0) var particle_storm_scale = 1.0:
+	set(value):
+		particle_storm_scale = value
+		reload = true
+@export_range(0.0, 10.0) var particle_storm_density = 1.0:
+	set(value):
+		particle_storm_density = value
+		reload = true
+@export var particle_storm_wind_direction = Vector2(1.0, 0.2):
+	set(value):
+		particle_storm_wind_direction = value
+		reload = true
+@export_range(0.1, 5.0) var particle_storm_wind_speed = 1.0:
+	set(value):
+		particle_storm_wind_speed = value
+		reload = true
+
+
 
 @export_group("Display")
 @export_subgroup("Color Correction")
