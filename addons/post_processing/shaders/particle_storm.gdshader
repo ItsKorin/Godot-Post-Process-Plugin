@@ -1,3 +1,9 @@
+// ParticleStormShader
+// Copyright (c) 2025 Lou Bernardi (https://github.com/Loufe)
+// A dynamic particle system shader designed to simulate natural phenomena like dust storms,
+// snow flurries, or ash clouds with controllable wind direction and turbulence patterns.
+// Features customizable particle density, color, and chaotic movement behaviors.
+
 shader_type canvas_item;
 
 // Visual appearance parameters
@@ -20,11 +26,11 @@ vec2 hash22(vec2 seed_position) {
 vec2 get_particle_pos(vec2 cell_position, float particle_index, float current_time) {
     // Generate initial position using cell and particle index
     vec2 initial_position = hash22(cell_position + particle_index * 123.456);
-    
+
     // Generate unique movement characteristics for this particle
     vec2 particle_characteristics = hash22(initial_position * 123.456);
     float velocity_variation = 0.7 + particle_characteristics.x * 0.6;
-    
+
     // Calculate wind-driven movement
     vec2 wind_offset = wind_direction * current_time * velocity_variation;
     
@@ -35,7 +41,7 @@ vec2 get_particle_pos(vec2 cell_position, float particle_index, float current_ti
         sin(swirl_phase + initial_position.y * 6.28),
         cos(swirl_phase + initial_position.x * 6.28)
     ) * swirl_amplitude * chaos;
-    
+
     // Combine movements and wrap around unit space
     return fract(initial_position + wind_offset + swirl_offset);
 }
@@ -43,10 +49,10 @@ vec2 get_particle_pos(vec2 cell_position, float particle_index, float current_ti
 // Renders a single square particle with soft edges
 float get_pixel(vec2 current_uv, vec2 particle_center) {
     vec2 distance_to_center = abs(current_uv - particle_center);
-    
+
     // Base particle size with scale adjustment
     float particle_size = 0.04 / scale;
-    
+
     // Create soft-edged square shape
     float square_distance = max(distance_to_center.x, distance_to_center.y);
     return 1.0 - smoothstep(particle_size * 0.8, particle_size, square_distance);
@@ -57,36 +63,35 @@ void fragment() {
     vec2 scaled_uv = UV * scale;
     vec2 current_cell = floor(scaled_uv);
     vec2 cell_local_uv = fract(scaled_uv);
-    
+
     // Calculate time-based movement
     float current_time = TIME * wind_speed;
-    
+
     float total_sand_density = 0.0;
-    
+
     // Calculate particle count based on density parameter
     float particles_per_cell = floor(4.0 + density * 12.0);
-    
+
     // Render particles from current and neighboring cells
     for (float x = -1.0; x <= 1.0; x++) {
         for (float y = -1.0; y <= 1.0; y++) {
             vec2 neighbor_offset = vec2(x, y);
             vec2 neighbor_cell = current_cell + neighbor_offset;
-            
+
             // Generate and render all particles in this cell
             for (float particle_idx = 0.0; particle_idx < particles_per_cell; particle_idx++) {
                 vec2 particle_pos = get_particle_pos(neighbor_cell, particle_idx, current_time);
                 vec2 world_pos = (particle_pos + neighbor_offset);
-                
+
                 // Accumulate particle density
                 total_sand_density += get_pixel(cell_local_uv, world_pos) * 0.25;
             }
         }
     }
-    
     // Apply intensity and clamp to valid range
     total_sand_density *= intensity;
     total_sand_density = clamp(total_sand_density, 0.0, 1.0);
-    
+
     // Quantize density for sharper particle appearance
     total_sand_density = floor(total_sand_density * 6.0) / 6.0;
     

@@ -199,7 +199,35 @@ class_name PostProcessingConfiguration extends Resource
 	set(value):
 		particle_storm_wind_speed = value
 		reload = true
-
+@export_subgroup("Directional Drift")
+@export var directional_drift: bool:
+	set(value):
+		directional_drift = value
+		reload = true
+@export var directional_drift_color: Color = Color(0.76, 0.69, 0.5, 0.3):
+	set(value):
+		directional_drift_color = value
+		reload = true
+@export_range(0.0, 3.0) var directional_drift_density = 0.3:
+	set(value):
+		directional_drift_density = value
+		reload = true
+@export_range(0.0, 5.0) var directional_drift_speed = 1.0:
+	set(value):
+		directional_drift_speed = value
+		reload = true
+@export var directional_drift_scale = 30.0:
+	set(value):
+		directional_drift_scale = value
+		reload = true
+@export var directional_drift_direction = Vector2(1.0, 0.5):
+	set(value):
+		directional_drift_direction = value
+		reload = true
+@export_range(0.1, 5.0) var directional_drift_layer_ratio = 1.2:
+	set(value):
+		directional_drift_layer_ratio = value
+		reload = true
 
 
 @export_group("Display")

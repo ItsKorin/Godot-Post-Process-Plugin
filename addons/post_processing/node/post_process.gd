@@ -10,6 +10,7 @@ enum EffectType {
 	CIRCULAR_WAVES,
 	COLOR_CORRECTION,
 	CRT,
+	DIRECTIONAL_DRIFT,
 	FISHEYE,
 	GLITCH,
 	GRAIN,
@@ -121,6 +122,13 @@ func _update_shader_parameters( _type : EffectType, _material : Material) -> voi
 			_material.set_shader_parameter("chaos", configuration.particle_storm_chaos)
 			_material.set_shader_parameter("scale", configuration.particle_storm_scale)
 			_material.set_shader_parameter("density", configuration.particle_storm_density)
+		EffectType.DIRECTIONAL_DRIFT:
+			_material.set_shader_parameter("particle_color", configuration.directional_drift_color)
+			_material.set_shader_parameter("particle_density", configuration.directional_drift_density)
+			_material.set_shader_parameter("flow_speed", configuration.directional_drift_speed)
+			_material.set_shader_parameter("pattern_scale", configuration.directional_drift_scale)
+			_material.set_shader_parameter("flow_direction", configuration.directional_drift_direction)
+			_material.set_shader_parameter("layer_velocity_ratio", configuration.directional_drift_layer_ratio)
 		_:
 			push_error("Unhandled/Invalid EffectType: " + str(_type))
 
@@ -161,6 +169,8 @@ func _check_shader_visibility(_type: EffectType) -> bool:
 			return configuration.Vignette
 		EffectType.PARTICLE_STORM:
 			return configuration.particle_storm
+		EffectType.DIRECTIONAL_DRIFT:
+			return configuration.directional_drift
 		_:
 			push_error("Unhandled/Invalid EffectType: " + str(_type))
 			return false
@@ -184,6 +194,7 @@ func _ready():
 	_add_canvas_layer_children("res://addons/post_processing/node/children/pixelate.tscn", EffectType.PIXELATE)
 	_add_canvas_layer_children("res://addons/post_processing/node/children/palette.tscn", EffectType.PALETTE)
 	_add_canvas_layer_children("res://addons/post_processing/node/children/particle_storm.tscn", EffectType.PARTICLE_STORM)
+	_add_canvas_layer_children("res://addons/post_processing/node/children/directional_drift.tscn", EffectType.DIRECTIONAL_DRIFT)
 
 	var null_effects: PackedStringArray = []
 	for e in effects:
