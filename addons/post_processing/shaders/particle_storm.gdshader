@@ -105,7 +105,7 @@ void fragment() {
     vec2 current_cell = floor(scaled_uv);
     vec2 cell_local_uv = fract(scaled_uv);
     float current_time = TIME * wind_speed;
-    
+
     float total_sand_density = 0.0;
     
     // Process a 3x3 grid of cells around current position
