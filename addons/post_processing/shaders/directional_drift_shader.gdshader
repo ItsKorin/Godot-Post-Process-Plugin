@@ -9,16 +9,24 @@ uniform vec4 particle_color: source_color = vec4(0.76, 0.69, 0.5, 0.3);  // Base
 uniform float particle_density: hint_range(0.0, 3.0) = 0.3;              // Controls the amount of visible particles
 uniform float flow_speed: hint_range(0.0, 5.0) = 1.0;                    // Base movement speed
 uniform float pattern_scale = 30.0;                                      // Controls size and distribution of particles
-uniform vec2 flow_direction = vec2(1.0, 0.5);                           // Direction of particle movement
+uniform vec2 normalized_flow_direction = vec2(0.89442719, 0.4472136);   // Normalized direction vector (default 1.0, 0.5 normalized)
 uniform float layer_velocity_ratio = 1.2;                               // Speed multiplier for second noise layer
 const float SPEED_SCALE = 0.3;                                          // Internal speed scaling factor (30%)
 
-// Enhanced noise generation for natural-looking distribution
+// Optimized noise generation using combined cellular and gradient noise
+// Provides good distribution while maintaining efficiency
 vec2 generate_noise_vector(vec2 position) {
-    return fract(sin(vec2(
-        dot(position, vec2(127.1, 311.7)),
-        dot(position, vec2(269.5, 183.3))
-    )) * 43758.5453123);
+    vec2 i = floor(position);
+    vec2 f = fract(position);
+    
+    // Generate vectors using simple but effective hash
+    vec2 hash = fract(sin(vec2(
+        dot(i, vec2(12.9898, 78.233)),
+        dot(i, vec2(43.5453, 28.179))
+    )) * 43758.5453);
+    
+    // Mix in cellular noise characteristics for better particle distribution
+    return hash + 0.5 * sin(6.2831 * f);
 }
 
 // Smooth noise function for organic particle movement
@@ -44,13 +52,11 @@ float create_smooth_noise(vec2 position) {
 }
 
 void fragment() {
-    // Ensure consistent movement speed regardless of direction magnitude
-    vec2 normalized_direction = normalize(flow_direction);
-
-    // Create two offset layers moving at different speeds for parallax effect
-    // Negate the normalized direction to match expected coordinate system
-    vec2 primary_offset = UV - (normalized_direction * TIME * flow_speed * SPEED_SCALE);
-    vec2 secondary_offset = UV - (normalized_direction * TIME * flow_speed * layer_velocity_ratio * SPEED_SCALE);
+    // Use pre-normalized direction vector to avoid per-fragment normalization
+    // Negate the direction to match expected coordinate system
+    vec2 time_offset = normalized_flow_direction * TIME * flow_speed * SPEED_SCALE;
+    vec2 primary_offset = UV - time_offset;
+    vec2 secondary_offset = UV - (time_offset * layer_velocity_ratio);
 
     // Generate two noise layers with different scales
     float primary_noise = create_smooth_noise(primary_offset * pattern_scale);
