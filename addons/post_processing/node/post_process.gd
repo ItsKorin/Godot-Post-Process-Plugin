@@ -101,6 +101,7 @@ func _update_shader_parameters( _type : EffectType, _material : Material) -> voi
 			_material.set_shader_parameter("scanlines_width", configuration.scanlines_width)
 			_material.set_shader_parameter("grille_opacity", configuration.grille_opacity)
 			_material.set_shader_parameter("pixelate", configuration.pixelate)
+			_material.set_shader_parameter("roll_speed", configuration.roll_speed)
 			_material.set_shader_parameter("roll_size", configuration.roll_size)
 			_material.set_shader_parameter("roll_variation", configuration.roll_variation)
 			_material.set_shader_parameter("distort_intensity", configuration.distort_intensity)
