@@ -1,15 +1,4 @@
-> # _!!DISCLAIMER!!_
-> Due to certain stuff happening in my life, i cannot maintain this project by myself, at least not right now.
-> if you'd like to become a maintainer, please contact me thru my email: **korin@itskorin.online** or by creating a new **Issue**
->
-> Worm regards, Korin.
->
-> *Some more info*
-<details>
-<summary>Is this project abandoned?</summary>
-I will not be archiving this repository as i am NOT abandoning it, im just taking a break, sadly.
-</details>
----
+# Developement has been halted due to a **[Rewrite](https://github.com/ItsKorin/PostFX)**
 
 # Post Processing Plugin
 #### An add-on for Godot 4.2, available in the Godot Asset Library.
